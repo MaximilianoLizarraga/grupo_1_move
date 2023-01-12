@@ -1,0 +1,119 @@
+
+.mainindex h1, h2{
+    text-align: center;
+    font-size: 25px;
+    text-shadow: 1px 2px 2px seashell, 0 0 25px seashell;
+}
+
+ 
+div.galeria:hover{
+    transform: rotate(-2deg);
+}
+
+
+.contenedor-productos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7%;
+    justify-content: center;
+    
+    
+    
+    
+}
+
+
+.producto {
+    width: 40%;
+    
+}
+
+
+
+
+.producto:hover .descripcion {
+    opacity: 100%;
+}
+
+.producto img {
+    margin: 0px;
+    border-radius: 15%;
+}
+
+/*Detalles de producto*/
+
+.descripcion {
+   font-size: 1.5rem;
+   font-family: sans-serif;
+   margin-bottom: 0px; 
+   text-align: center;
+   
+}
+
+.producto {
+   margin-bottom: 15px;
+   display: inline-block;
+   width: 200px;
+   left: 200px;
+   margin: 10px;
+   padding: 5px 5px;
+   border-radius: 30px;
+   background-image: var(--gradient);
+   /*animation: bg-animation 15s infinite; anima las imagenes*/
+   background-size: 300%;
+   background-position: left;
+   /*transition:border-radius 450ms; transicion de bordes*/
+   transition: all 0.5s;
+   
+}
+
+
+    .degrade {
+      height: 40px;
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      background-image: linear-gradient(to right, #ACCAD4 , #FF8499);
+      background-size: 120%;
+    /* fuente... 
+    https://www.w3schools.com/css/tryit.asp?filename=trycss3_gradient-linear_ltr
+    */
+    }
+
+    @keyframes bg-animation{
+        0%{
+            background-position: left;
+        }
+        100%{
+            background-position: right;
+        }
+    }
+    
+    
+    :root{
+        --gradient: linear-gradient(
+            45deg,
+            #ACCAD4,
+            #ff6f91,
+            #ff6971,
+            #ffc75f,
+            #f9f871
+            
+        );
+    }
+    
+    .producto:hover,
+    .imagenmove:hover,
+    .producto:focus{
+        background-position: right;
+        /*border-radius:50%*/
+        
+    } 
+
+
+.video{
+    width: 100%;
+    margin: auto;
+}

@@ -1,0 +1,50 @@
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- title... lo especificamos en cada include de header, ver ej en productDetail.ejs 
+    y por el if ternario... https://stackoverflow.com/questions/37732986/ejs-js-referenceerror-title-not-defined -->
+    <title>Move / <%= (typeof title != "undefined" ? title : "Las mejores zapatillas!") %></title>
+    
+    <!-- CSS NORMALIZE -->
+    <!-- https://necolas.github.io/normalize.css/
+    Muy importante colocar la referencia a este fichero antes que cualquier otro estilo. -->
+    <link href="/css/normalize.css" rel="stylesheet">
+    
+    <!-- ICONOS -->
+    <!-- Se buscan desde aqui...
+    https://fontawesome.com/v5/search?s=solid%2Cbrands 
+    -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet" />
+    
+    <!-- FAVICON / se edito primero en photoshop y luego se termino en la siguiente web
+    https://realfavicongenerator.net/ -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+
+    <!-- ESTILOS PROPIOS -->
+    <link href="/css/styles-x00body.css" rel="stylesheet">
+    <link href="/css/styles-x01header.css" rel="stylesheet">
+    <link href="/css/styles-x02main.css" rel="stylesheet">
+    <link href="/css/styles-home.css" rel="stylesheet">
+    <link href="/css/styles-productDetail.css" rel="stylesheet">
+    <link href="/css/styles-productCart.css" rel="stylesheet">
+    <link href="/css/styles-register.css" rel="stylesheet">
+    <link href="/css/styles-login.css" rel="stylesheet">
+
+    <link href="/css/styles-xformularios.css" rel="stylesheet">
+    <link href="/css/styles-x99footer.css" rel="stylesheet">
+
+<!-- 
+    // llevamos los .js al footer por recomendacion
+    <script src="/js/funciones.js"></script> -->
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+
+    
+    </head>

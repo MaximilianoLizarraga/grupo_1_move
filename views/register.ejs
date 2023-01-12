@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <%- include('./partials/head') %>
+
+<body>
+
+    <%- include('./partials/header')%>
+
+    <main >
+
+        <h1>Registrarme</h1>
+
+
+        <div class="login_register" >
+            <div class='inline'><div> <a href="/users/login">Iniciar Sesión</a> </div></div>
+            <div class='inline'><div> <a href="/users/register">Registrarme</a> </div></div>
+        </div>
+        
+                <form  action="/users/register" method="post" name="registrousuario" enctype="multipart/form-data" autocomplete="off" class="formulario">
+
+
+                    
+                    <div class="emailycontra">
+                        <label for="nombre"><span class="asterisco">* </span>Nombre</label>
+                    </div>
+                    <input type="text" name="name" id="nombre" value="<%= (locals.oldData && oldData.name) ? oldData.name : '' %>">
+                    <% if (locals.errors && errors.name) { %>
+                        <div style="color: red"> 
+                        <%= errors.name.msg%>
+                        </div>
+                    <% } %>
+
+                    
+                    <div class="emailycontra">
+                        <label for="apellido"><span class="asterisco">* </span>Apellido</label>
+                    </div>
+                    <input type="text" name="last_name" id="apellido" value="<%= (locals.oldData && oldData.last_name) ? oldData.last_name : '' %>">
+                    <% if (locals.errors && errors.last_name) { %>
+                        <div style="color: red"> 
+                        <%= errors.last_name.msg%>
+                        </div>
+                    <% } %>
+
+
+                    <div class="emailycontra">
+                        <label for="genero"><span class="asterisco">* </span>Género</label>
+                    </div>
+                    <select id="genero" name="genero">
+                        <option value="">Seleccione...</option>
+                        <%    
+                            const gender = ['femenino', 'masculino'];
+                            for (let x of gender) {
+                        %>
+                            <option value="<%= x %>" <%= (locals.oldData && (oldData.genero == x)) ? 'selected' : '' %>>
+                            <%= x.toUpperCase() %>
+                            </option>                     
+                        <%     
+                            }
+                        %>
+                    </select>
+                    <% if (locals.errors && errors.genero) { %>
+                        <div style="color: red"> 
+                        <%= errors.genero.msg%>
+                        </div>
+                    <% } %>
+
+                    <!-- correo electronico -->
+                    <div class="emailycontra">
+                        <label for="email"><span class="asterisco">* </span>Email</label>
+                    </div>
+                    <input type="email" id="email" name="email" value="<%= (locals.oldData && oldData.email) ? oldData.email : '' %>">
+                    <% if (locals.errors && errors.email) { %>
+                        <div style="color: red"> 
+                        <%= errors.email.msg%>
+                        </div>
+                      <% } %>
+
+
+                    <!--contraseña-->
+                    <div class="emailycontra">
+                        <label for="password"><span class="asterisco">* </span>Contraseña</label>
+                    </div>
+                    <input type="password" name="password" id="password" value="<%= (locals.oldData && oldData.password) ? oldData.password : '' %>">
+                    <% if (locals.errors && errors.password) { %>
+                        <div style="color: red"> 
+                        <%= errors.password.msg%>
+                        </div>
+                      <% } %>
+
+   
+
+
+                    <label for="profileImage" class="custom-file-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>&nbsp;Imagen de perfil
+                    </label>
+                    <input type="file" id="profileImage" name="profileImage" accept=".jpg, .jpeg, .png, .gif"/>
+
+                    <% if (locals.errors && errors.profileImage) { %>
+                      <div style="color: red"> 
+                      <%= errors.profileImage.msg%>
+                      </div>
+                    <% } %>
+    
+                    <!--boton crear cuenta-->
+                    <button type="submit" class="boton-inicio">CREAR CUENTA</button>
+                    
+            </form>
+
+
+    </main>
+   
+    <%- include('./partials/footer')%>
+    
+</body>
+</html>

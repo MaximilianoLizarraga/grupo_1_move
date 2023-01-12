@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <%- include('../partials/head') %>
+
+<body>
+
+<%- include('../partials/header')%>
+
+
+
+
+<style>
+
+.admin_nav{
+    margin: auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+}
+
+.admin_nav div{
+    background-color: blueviolet;
+    color: white;
+    padding: 10px;
+    width: 160px;
+    border-radius: 80px;
+}
+
+form label {
+    display: block;
+    text-align: left;
+}
+</style>
+
+    <main>
+
+        <div class="formulario">
+
+    
+        <h1>ADMIN / CREAR</h1>
+
+        <div class="admin_nav">
+            <a href="/admin"><div><i class="fas fa-solid fa-list"></i>&nbsp;Listar</div></a>
+            <a href="/admin/create"><div><i class="fas fa-plus"></i>&nbsp;Crear</div></a>
+        </div>
+
+
+        <div class="formulario">
+
+        <!-- "enctype" es indispensable para subir imagenes -->
+        <form action="/admin/create" method="POST" enctype="multipart/form-data">
+    
+            <!-- Errores... si los hay los listamos aca -->
+            <% 
+            if(locals.errors){
+                errors.forEach(error => {
+            %>
+                <p style="color: tomato;"><%= error.msg %></p>
+            <% 
+                })
+            }
+            %>
+
+            
+            
+            <label for="marca">Marca</label>
+            <select id="marca" name="marca">
+                <option value="">Seleccione...</option>
+                <%    
+                for( let i = 0; i < brands.length; i++ ) { 
+                %>
+                <option value="<%= brands[i].id %>" <%= ( locals.old && old.marca == brands[i].id ) ? 'selected' : '' %>>
+                    <%= brands[i].name.toUpperCase(); %>
+                </option>
+                <% 
+                }
+                %>
+            </select>
+            
+
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" value="<%= (locals.old && old.nombre) ? old.nombre : '' %>">
+
+
+            <label for="precio">Precio</label>
+            <input type="number" name="precio" id="precio" min="0"  value="<%= (locals.old && old.precio) ? old.precio : '' %>">
+
+            <label for="descuento">Descuento</label>
+            <input type="number" name="descuento" id="descuento" min="0" max="50" step="5" value="<%= (locals.old && old.descuento) ? old.descuento : '' %>">
+
+            <label for="descripcion">Descripción</label>
+            <textarea name="descripcion" id="descripcion"><%= (locals.old && old.descripcion) ? old.descripcion : '' %></textarea>
+            
+
+
+            <!-- OBS... este se podria enviar oculto, pero lo insertamos desde el controlador -->
+            <input type="hidden" name="categoria" id="categoria"  value="zapatillas" >
+
+            <label for="genero">Genero</label>
+            <select id="genero" name="genero">
+                <option value="">Seleccione...</option>
+                <%    
+                    const gender = ['mujer', 'hombre', 'unisex'];
+                    for (let x of gender) {
+                %>
+                    <option value="<%= x %>" <%= ( locals.old && old.genero === x ) ? 'selected' : '' %>>
+                    <%= x.toUpperCase() %>
+                    </option>                     
+                <%     
+                    }
+                %>
+            </select>
+
+            <label for="origen">Origen</label>
+            <select id="origen" name="origen">
+                    <option value="">Seleccione...</option>
+                <%    
+                    const origin = ['nacional', 'importado'];
+                    for (let x of origin) {
+                %>
+                    <option value="<%= x %>" <%= ( locals.old && old.origen === x ) ? 'selected' : '' %>>
+                    <%= x.toUpperCase() %>
+                    </option>                     
+                <%     
+                    }
+                %>
+            </select>
+
+       
+            <label for="image" class="custom-file-upload" >
+            <i class="fas fa-cloud-upload-alt"></i>&nbsp;Imagen de producto<span id="imgToUpload"></span>
+            </label>
+            <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png, .gif" onchange="getFileData(this);"/>
+
+
+<script>
+function getFileData(myFile){
+    let file = myFile.files[0];  
+    let filename = file.name;
+    let imgToUpload = document.getElementById("imgToUpload")
+    imgToUpload.innerHTML = '...' + filename;
+}    
+</script>
+
+            <label for="observaciones">Observaciones</label>
+            <textarea name="observaciones" id="observaciones"><%= (locals.old && old.observaciones) ? old.observaciones : '' %></textarea>
+
+            <% 
+            // JS ponemos la fecha del dia
+            // https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = yyyy + '-' + mm + '-' + dd ;
+            // ------------------------------------
+            %>
+            <label for="fecha_creado">Fecha de Carga</label>
+            <input type="date" name="fecha_creado" id="fecha_creado" min="2020-01-01" value="<%= today %>" readonly>
+
+            <input type="submit" value="INSERTAR">
+
+        </form>
+      
+        </div>
+
+    </div>
+    <!--FIN FORMULARIO DE CREACIÓN-->          
+
+    </main>
+
+    <%- include('../partials/footer')%>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('./partials/head') %>
+<style>
+    .error_body{
+        background-color: #000;
+    }
+    .error_div{
+        margin: auto;
+    }
+    .error_div img{
+        margin-bottom: 30px;
+    }
+    .error_div h2{
+        color: #F190A3;
+        text-shadow: none;
+    }
+    .error_body .logo{
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+    }
+</style>
+<body class="error_body">
+    
+    <div class="error_div">
+
+    <!-- Logo -->
+    <a href="/">
+        <img src="/images/move.png"  alt="logo-move" class="logo">
+    </a>
+    <!-- Mensaje -->
+    <h2><%= (typeof message != "undefined" ? message : "Página no encontrada") %></h2> 
+    <br>  
+    <h2><a href="javascript: history.go(-1)"><< volver atrás</a></h2> 
+    
+    </div>
+
+</body>
+</html>

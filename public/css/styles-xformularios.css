@@ -1,0 +1,172 @@
+/* 
+
+ ██████ ███████ ███████     ███████  ██████  ██████  ███    ███ ███████ 
+██      ██      ██          ██      ██    ██ ██   ██ ████  ████ ██      
+██      ███████ ███████     █████   ██    ██ ██████  ██ ████ ██ ███████ 
+██           ██      ██     ██      ██    ██ ██   ██ ██  ██  ██      ██ 
+ ██████ ███████ ███████     ██       ██████  ██   ██ ██      ██ ███████
+                                                                             
+text to ascii...    
+https://patorjk.com/software/taag/#p=display&f=ANSI%20Regular&t=cssHeader
+
+ */
+
+.formulario {
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+
+.formulario input[type=text], input[type=number], input[type=email], input[type=password], input[type=date], select, textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #9b9b9b;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .formulario label{
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+
+  .formulario input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+  
+  .formulario input[type=submit]:hover {
+    background-color: #45a049;
+  }
+
+
+  
+/*
+FORMULARIO NUEVAS CORRECCIONES 
+*/
+
+.inline { 
+  display: inline-block; 
+  border-bottom: 2px solid #A334FF; 
+  width: 190px;
+}
+.formulario label {
+  display:block;
+  text-align: left;
+}
+.formulario input[type=checkbox], input[type=radio] {
+  vertical-align: middle;
+  position: relative;
+  bottom: 1px;
+  
+}
+.formulario textarea:focus, input:focus{
+  outline: none;
+}
+.recordar{
+  display: flex;
+  justify-content: space-between;
+  
+  align-items: baseline;
+}
+
+.izq label, input[type=checkbox]{
+cursor: pointer;
+}
+
+
+
+
+/* 
+***************************
+BOTON 
+***************************
+*/
+
+
+
+
+.boton-inicio{
+  width: 100%;
+  background-color: #000;
+  color: #FFFFFF;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 20px;
+  height: 50px;
+  line-height: 40px;
+  max-width: 400px;
+  margin: auto;
+  transition: all 1s;
+  margin-top: 30px;
+  border: none;
+
+}
+
+.boton-inicio:hover{
+  background-color: #A334FF;
+  cursor: pointer;
+}
+
+
+/* 
+***************************
+DATO REQUERIDO 
+***************************
+*/
+
+.emailycontra{
+  margin-top:20px;
+  margin-bottom: 8px;
+  color: #666666;
+}
+
+/* 
+***************************
+ENCABEZADO LOGIN/REGISTER 
+***************************
+*/
+
+.login_register{
+  margin-bottom: 40px;
+}
+
+.asterisco{
+  color: salmon;
+}
+
+/* 
+***************************
+INPUT FILE // IMAGEN
+***************************
+*/
+
+/* input[type="file"] */
+#profileImage {
+  display: none;
+}
+#image {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  background-color: gainsboro;
+  border-radius: 10px;
+  padding: 12px 12px;
+  cursor: pointer;
+}

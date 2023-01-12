@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- --------------------------------------------- -->
+<!-- HEAD (inicio) -->
+<%- include('./partials/head') %>
+
+<!-- HEAD (fin) -->
+<!-- --------------------------------------------- -->
+
+<!-- --------------------------------------------- -->
+
+<body>
+
+    <%- include('./partials/header')%>
+
+
+    
+
+    
+
+    <h1>¿Olvidaste tu contraseña?</h1>
+    
+    <div class="login_register" >
+        <div class='inline'><div> <a href="/users/login">Iniciar Sesión</a> </div></div>
+        <div class='inline'><div> <a href="/users/register">Registrarme</a> </div></div>
+    </div>
+
+    <p>Escribí tu email y recibirás un enlace para restablecerla.</p>
+
+    <!--form para recordar contraseña-->
+    <form action="" method="POST" autocomplete="off" class="formulario">
+
+        <div class="emailycontra">
+            <label for="email"><span class="asterisco">* </span>Email</label>
+        </div>
+        <input type="email" id="email" name="email" value="" />
+
+        <button type="submit" class="boton-inicio">RECORDAR</button>
+
+    </form>
+
+    
+
+    
+
+    
+
+<%- include('./partials/footer')%>
+<!-- BODY / FOOTER (fin) -->
+<!-- --------------------------------------------- -->
+
+</body>
+</html>
+    
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <%- include('./partials/head') %>
+
+<body>
+
+    <%- include('./partials/header')%>
+
+    <video class="video" controls  autoplay muted>  
+        <source src="/videos/lalipuma.mp4" type="video/mp4" >
+      </video>   
+
+ 
+      
+    <main class="mainindex"> 
+  
+      <hr> 
+      <br>
+    <br>
+    <div>
+        <h1>NAVEGÁ POR MARCAS</h1>
+        <div class="contenedor-productos">
+            <article class="producto">
+                <a href="/zapatillas/adidas">
+                <img src="/images/adidas.png" alt="Adidas" width="100%" class="imagenmove"></a>
+                </article>
+    
+        
+            <article class="producto">
+                <a href="/zapatillas/puma">
+                <img src="/images/puma.png" alt="puma" width="100%" class="imagenmove"></a> 
+                </article>  
+        
+                
+                
+            <article class="producto">
+                <a href="/zapatillas/converse">
+                <img src="/images/converse.png" alt="converse" width="100%" class="imagenmove"></a>
+                
+                </article>
+            
+            
+            
+            <article class="producto">
+                <a href="zapatillas/nike">
+                <img src="/images/nike.png" alt="nike" width="100%" class="imagenmove"></a>
+            
+            </article>
+        </div>
+        
+    </section>      
+
+    <div class="degrade" ></div>
+
+    <section>
+        <h2>MAS RECIENTES</h2>
+        <br><br>
+        <%- 
+        include('./partials/productsRecientes')
+        %>
+    </section>
+
+    <div class="degrade" ></div>
+
+    <section>
+        <h2>PROMOCIONES</h2>
+        <br><br>
+        <%-
+        /* productsFiltrados = productsRecientes;
+         */include('./partials/productsDto')
+         %>
+    <section>
+
+    <div class="degrade" ></div>
+
+
+
+    </main>
+
+    <%- include('./partials/footer')%>
+
+</body>
+</html>

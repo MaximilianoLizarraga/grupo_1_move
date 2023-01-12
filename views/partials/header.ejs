@@ -1,0 +1,209 @@
+<style>
+.carrito{
+position: relative;
+}
+
+#cartBtn:hover{
+cursor: pointer;
+}
+
+.circuloRojo{
+position: absolute;
+width: 20px;
+border-radius: 50%;
+background-color: tomato;
+top: -10px;
+left: 15px;
+display: none;
+
+}
+
+
+
+</style>
+
+
+<!-- ******************************** -->
+<!-- 
+    Solo se aplica cuando este logueado, lo de locals es por EJS del lado del servidor
+ -->
+<% if (locals.isLogged) { %>
+
+<script>
+ 
+    /* print carrito */
+    const cuerpoDelDocumento = document.body;
+    cuerpoDelDocumento.onload = cargarCarrito;
+
+    function cargarCarrito(){
+
+        // select... class="circuloRojo"
+        let element = document.getElementById('circuloRojo');
+   
+
+        
+        if (localStorage ) {
+
+            /* ********************************** */
+            let conteo = localStorage.getItem("cartConteo");
+            if (conteo > 0) {
+
+
+            /* Actualizamos el carrito */
+            // add... circuloRojoDisplay
+            element.style.display = "block";
+            // add... inner text el value del carro
+            element.innerText = localStorage.getItem("cartConteo");
+            }else {
+                element.style.display = "none";
+            }
+            /* ********************************** */
+
+            // TOTAL = ++ subtotales...
+            let subtotal = document.getElementsByClassName("subtotalCart");
+            let precioTotal = 0;
+            for (var i = 0; i < subtotal.length; i++) {
+                precioTotal = precioTotal + parseInt( subtotal[i].innerText.replace(/\./g, '') );
+            }
+
+            let totalCart = document.getElementById("totalCart");
+            totalCart.innerText = precioTotal.toLocaleString();
+            // ---------------------------------
+ 
+        } 
+        else{ 
+            element.style.display = "none";
+        }
+ 
+     
+
+    }
+</script>
+
+<% } %>
+<!-- ******************************** -->
+
+
+<header>
+
+    <div class="mainheader" >
+
+        <div class="mainheader_left" >
+            <!-- Logo -->
+            <a href="/">
+                <img src="/images/move.png"  alt="logo-move" class="logo">
+            </a>
+            <!-- 'nav' está destinado sólo para el bloque principal de enlaces de navegación -->
+            <nav >
+                <ul>
+                    <li><a href="/zapatillas">Todas</a></li>
+                    <li><a href="/zapatillas/mujeres">Mujeres</a></li>
+                    <li><a href="/zapatillas/hombres">Hombres</a></li>
+                    <li><a href="/zapatillas/unisex">Unisex</a></li>
+                    
+                    <% if (locals.isLogged && locals.isAdmin) { %>
+                    <li><a href="/admin" style="color: violet;"><strong>(Admin)</strong></a></li>
+                    <% } %>
+                    
+                </ul>
+            </nav>
+        </div>
+    
+        <div class="mainheader_right" >
+
+
+
+            <!-- Buscador -->
+            <!-- va con barrita inicial indicando ruta absoluta, caso contrario da error buscando desde ciertos lados -->
+            <!-- https://www.w3schools.com/html/html_filepaths.asp -->
+            <form  action="/zapatillas/search" method="GET" autocomplete="off">
+                <button type="submit" class="buscador_lupa">
+                    <i class="fas fa-search"></i>
+                </button> 
+                <!-- el sig name se usa para el controlador del buscador -->
+                <input type="text" name="keywords" >
+            </form>
+
+
+
+            <!-- Iconos -->
+            <div class="iconos">
+
+                <form action="/carrito" method="POST" id="cartForm">
+                    <input type="hidden" name="postZapatillas" id="postZapatillas"  value="">
+                    <input type="hidden" name="postZapatillasN" id="postZapatillasN"  value="">
+                    <div class="carrito">
+                            <i class="fas fa-shopping-cart " id="cartBtn"></i>
+                        <div class="circuloRojo" id="circuloRojo">3</div>
+                    </div>
+                </form>
+
+                <a href="/zapatillas/favoritas"><i class="fas fa-solid fa-heart "></i></a>
+
+                <!-- Icono perfil (inicio) -->
+                <a href="/users/login">
+                    <% 
+                    // Si es admin, le añadimos la clase con borde de color 
+                    let iconoColor;
+                    if( locals.isLogged ){
+                        (locals.isAdmin) ? iconoColor = "iconoColorViolet" : iconoColor = "iconoColorYellow";
+                    }
+                    else{
+                        iconoColor = "";
+                    }
+                    
+                    %>
+                    <i class="fas fa-user <%= iconoColor %>"></i>
+                </a>
+
+
+
+                <!-- icono custom // solo visible en movil -->
+                <!-- dropdown // se vincula con... header.css...funciones.js -->
+                <div class="dropdown">
+                <i onclick="myFunction()" id="dropdown_burguer" class="fas fa-bars dropbtn"></i>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="/zapatillas">Todas</a>
+                    <a href="/zapatillas/mujeres">Mujeres</a>
+                    <a href="/zapatillas/hombres">Hombres</a>
+                    <a href="/zapatillas/unisex">Unisex</a>
+
+                    <% if (locals.isLogged && locals.isAdmin) { %>
+                    <a href="/admin" style="color: violet;"><strong>(Admin)</strong></a>
+                    <% } %>
+                    <% if (locals.isLogged ) { %>
+                    <a href="/users/logout" onclick=" deleteCarrito()"><strong>(Salir)</strong></a>
+                    <% } %>
+
+                </div>
+                </div>
+
+
+                
+            </div>
+
+        </div>
+    
+    </div>
+        
+</header>
+
+<script>
+let form = document.getElementById("cartForm");
+let postZapatillas = document.getElementById('postZapatillas');
+let postZapatillasN = document.getElementById('postZapatillasN');
+
+document.getElementById("cartBtn").addEventListener("click", function () {
+
+    postZapatillas.value = localStorage.getItem("cart");
+    postZapatillasN.value = localStorage.getItem("cartConteo");
+    form.submit();
+
+});
+</script>
+
+
+
+
+
+    

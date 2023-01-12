@@ -1,0 +1,357 @@
+/* 
+
+ ██████ ███████ ███████     ██████  ██████   ██████  ██████  ██    ██  ██████ ████████  ██████  
+██      ██      ██          ██   ██ ██   ██ ██    ██ ██   ██ ██    ██ ██         ██    ██    ██ 
+██      ███████ ███████     ██████  ██████  ██    ██ ██   ██ ██    ██ ██         ██    ██    ██ 
+██           ██      ██     ██      ██   ██ ██    ██ ██   ██ ██    ██ ██         ██    ██    ██ 
+ ██████ ███████ ███████     ██      ██   ██  ██████  ██████   ██████   ██████    ██     ██████                                                   
+
+
+text to ascii...    
+https://patorjk.com/software/taag/#p=display&f=ANSI%20Regular&t=cssHeader
+
+*/
+
+/* 
+MAIN
+--------------------------------------------- 
+*/
+
+
+
+
+            /* https://csswolf.com/how-to-make-a-realistic-button-press-effect-in-css/ */
+            .buttonAnadir {
+                padding: 10px;
+                width: 100%;
+                border-radius: 10px;
+                background: #A334FF;
+                color: #fff;
+                border: 1px solid black;
+                box-shadow: 0 8px #bbb; 
+            }
+            
+            .buttonAnadir:hover {
+                box-shadow: 0 3px #999;
+                transform: translateY(5px);
+                cursor: pointer;
+            }
+            
+            .active-fav{
+                color: tomato;
+            }
+        
+            
+/* ------------------------------- */
+
+.zapatillasDetail{
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 80px;
+
+}
+.zapatillasDetail_izq{
+    /* 
+    background-color: yellow; 
+    */
+}
+.zapatillasDetail_der{
+
+    text-align: left;
+    margin-left: 30px;
+    margin-right: 30px;
+    /* 
+    background-color: yellow; */
+
+    
+}
+.imgBig, .imgSmall{
+    display:block;
+    margin:auto;
+    width: 100%;
+    max-height: 350px;
+}
+
+
+.zapatillasDetail h1{
+    margin-bottom: 0;
+}
+.zapatillasDetail h2{
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.imagenes_galeria {
+    display: flex;
+    margin: auto;
+    margin-top: 10px;
+    
+}
+.imagenes_galeria img{
+    width: 70px;
+    border: 1px solid grey;
+
+}
+.imagenes_galeria img:hover{
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.detalles_zapatillas{
+    margin-bottom: 10px;
+    color: #61A951;
+}
+.detalles_zapatillas_alerta{
+    margin-bottom: 10px;
+    color: salmon;
+    font-weight: bold;
+}
+
+.detalles_zapatillas:first-of-type{
+    margin-top: 20px;
+}
+
+.talles{
+    display: flex;
+}
+.circulo_talles{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: 2px solid grey;
+    margin: 10px;
+    text-align: center;
+    line-height: 38px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    background-color: #CCCCCC;
+
+}
+.circulo_talles:first-child{
+ margin-left: 0px;
+}
+.circulo_talles:hover{
+    background-color: #21D2FE;
+    cursor: pointer;
+}
+
+.boton_alcarrito{
+    width: 100%;
+    background-color: #21D2FE;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 20px;
+    height: 40px;
+    line-height: 40px;
+    max-width: 400px;
+    margin: auto;
+    transition: all 1s;
+
+}
+.boton_alcarrito:hover{
+    background-color: #A334FF;
+    cursor: pointer;
+}
+
+/* ------------------------------ */
+main h2{
+    text-align: center;
+}
+
+main ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+main li:first-child {
+    padding-top: 25px;
+}
+
+main li {
+    padding-bottom: 10px;
+}
+
+
+
+.info_negrita{
+    font-weight: bold;
+}
+
+
+
+
+main .informacion{
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    padding: 20px;
+ 
+
+}
+
+main .recomendados{
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-around;
+    max-width: 1200px;
+    gap: 60px 20px;
+    
+/*     margin-top: 25px;
+    margin-bottom: 30px; */
+}
+
+
+
+
+
+main .recomendados .imagen{
+    width: 270px;
+    height: 270px;
+    position: relative;
+}
+main .recomendados .imagen:hover{
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);
+}
+
+
+.imgZapatilla{
+    width: 100%;
+}
+
+main .recomendados i{
+    position: absolute;
+    font-size: 25px;
+    top: 10px;
+    right: 10px;
+}
+main .recomendados i:hover{
+    color:tomato;
+    cursor: pointer;
+}
+
+main .recomendados .texto {
+/*     border-top: #666666 1px solid; 
+*/ 
+    padding-top: 10px;
+    margin: 10px;
+    margin-top: 0px;
+    text-align: center;
+}
+
+
+/* IMG DESCUENTO */
+
+.imgDescuento{
+    position: absolute;
+    left: -30px;
+    bottom: -30px;
+    width: 100px;
+}
+
+
+
+.txtDescuento{
+    position: absolute;
+    left: 0px;
+    bottom: 6px;
+    color: #fff;
+    font-size:  30px;
+    font-weight: bold;
+    transform: rotate(-33deg);
+}
+
+.tachado{
+    text-decoration:line-through;
+    color: #666666;
+    font-size: smaller;
+}
+.textoRojo{
+    color: #EB2026;
+}
+
+/* PRODUCTO DETALLE */
+
+
+.imgDetail{
+    position: relative;
+}
+
+.imgDetail i{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 35px;
+}
+.imgDetail i:hover{
+    color:tomato;
+    cursor: pointer;
+}
+
+
+
+
+.imgDescuento2{
+    position: absolute;
+    left: -30px;
+    bottom: -30px;
+    width: 100px;
+}
+.txtDescuento2{
+    z-index: 1;
+    position: absolute;
+    left: 0px;
+    bottom: 6px;
+    color: #fff;
+    font-size:  30px;
+    font-weight: bold;
+    transform: rotate(-33deg);
+}
+
+
+/* 
+********************************
+PORTADA TOP
+********************************
+*/
+
+
+.portada{
+    /* background image */
+    background-image: url("/images/portada_superior.jpg");
+    background-size: cover;
+    height: 100vh;
+
+    /* alineacion flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+
+    /* sombra texto */
+    color: #fff;
+    text-shadow: 0 5px 5px #7f00b2; 
+    font-size: large;
+
+    /* tamaño del texto... */
+    font-size:70px;
+    font-weight: bold;
+}
+
+.port2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+}
+
+.sin_resultados{
+    color: tomato;
+}

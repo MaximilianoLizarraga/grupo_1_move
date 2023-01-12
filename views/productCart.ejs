@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('./partials/head') %>
+
+<body>
+
+    <%- include('./partials/header')%>
+
+    <main>
+ 
+    <style>
+        /* ************** */
+        /* FLEXBOX */
+        /* ************** */
+
+        .contInfoResumen{
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: auto;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            align-items: flex-start;
+/*             background-color: #FFC842;
+ */            
+            
+        }
+
+        .izqInfo{
+            margin: auto;
+/*             background-color: aqua;
+ */        }
+        .derResumen{
+            display: flex;
+            flex-direction: column;
+            /* background-color: aquamarine; */
+            margin-top: 30px;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    /* ************** */
+    /* RESUMEN */
+    /* ************** */
+    .der_resumen{
+        border-bottom: 2px solid black;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+    }
+    .der_row{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+
+    }
+
+    .botonComprar{
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: black;
+        color: white;
+        border-radius: 5px;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .botonSeguirViendo{
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: white;
+        color: black;
+        border-radius: 5px;
+        width: 100%;
+        cursor: pointer;
+
+    }
+
+    /* ************** */
+    /* TABLA */
+    /* ref... 
+       https://www.cssscript.com/pure-html5css-responsive-table-solution/ */
+    /* ************** */
+ 
+    td, th { padding: 8px; padding: .5rem;
+    }
+    
+    th {
+      text-align: center;
+      
+    }
+    
+    
+    .table {
+      width: 100%;
+      padding: 16px;
+      padding: 1rem;
+    }
+    
+    .table__heading { border-bottom: 2px solid violet; }
+
+    
+     @media (max-width: 32rem) {
+
+
+
+     .table__heading {
+    display: none;
+    }
+     .table__content {
+     display: block;
+     padding: .5rem 0;
+    }
+     .table__row {
+     margin: .25rem 1rem;
+     padding: .5rem 0;
+     display: block;
+     border-bottom: 2px solid violet;
+    }
+     .table__content:before {
+     content: attr(data-heading);
+     display: inline-block;
+     width: 5rem;
+     margin-right: .5rem;
+     color: #999;
+     font-size: .75rem;
+     font-weight: 700;
+     text-transform: uppercase;
+     letter-spacing: 2px;
+    }
+
+    td{
+        text-align: left;
+    }
+
+    
+
+    }
+
+
+    .hideRow{
+        display: none;
+    }
+
+
+    
+    </style>
+
+
+<script>
+    function plusValue(id)
+    {
+        let value = parseInt(document.getElementById('number' + id).value, 10);
+        let price = document.getElementById('price' + id).innerText;
+        price = price.replace(/\./g, '');
+
+        value = isNaN(value) ? 0 : value;
+        value++;
+        document.getElementById('number' + id).value = value;
+        
+        // dto...
+        let dto = document.getElementById('dto' + id).innerText;
+
+        if(isNaN(dto)){
+            //alert("no lo es");
+            document.getElementById('subtotal' + id).innerText = parseInt(value * price, 10).toLocaleString();
+        }else{
+            //alert("si es");
+            let valorDto = price * ( dto / 100 );
+            let priceDto = price - valorDto;
+            document.getElementById('subtotal' + id).innerText = parseInt(value * priceDto, 10).toLocaleString();
+        }
+
+
+
+        // TOTAL = ++ subtotales...
+        let subtotal = document.getElementsByClassName("subtotalCart");
+        let precioTotal = 0;
+        for (var i = 0; i < subtotal.length; i++) {
+            precioTotal = precioTotal + parseInt( subtotal[i].innerText.replace(/\./g, '') );
+        }
+
+        let totalCart = document.getElementById("totalCart");
+        totalCart.innerText = precioTotal.toLocaleString();
+
+    }
+
+    function minusValue(id)
+    {
+        var value = parseInt(document.getElementById('number' + id).value, 10);
+        let price = document.getElementById('price' + id).innerText;
+        price = price.replace(/\./g, '');
+
+        if(value > 1){
+
+            value = isNaN(value) ? 0 : value;
+            value--;
+            document.getElementById('number' + id).value = value;
+
+            // dto...
+            let dto = document.getElementById('dto' + id).innerText;
+
+            if(isNaN(dto)){
+                //alert("no lo es");
+                document.getElementById('subtotal' + id).innerText = parseInt(value * price, 10).toLocaleString();
+            }else{
+                //alert("si es");
+                let valorDto = price * ( dto / 100 );
+                let priceDto = price - valorDto;
+                document.getElementById('subtotal' + id).innerText = parseInt(value * priceDto, 10).toLocaleString();
+            }
+
+            // TOTAL = ++ subtotales...
+            let subtotal = document.getElementsByClassName("subtotalCart");
+            let precioTotal = 0;
+            for (var i = 0; i < subtotal.length; i++) {
+                precioTotal = precioTotal + parseInt( subtotal[i].innerText.replace(/\./g, '') );
+            }
+
+            let totalCart = document.getElementById("totalCart");
+            totalCart.innerText = precioTotal.toLocaleString();
+            // ------------------------
+
+        }
+        else{
+            deleteRow(id);
+        }
+
+    }
+
+    function deleteRow(id)
+    {
+        let element = document.getElementById('row' + id);
+        element.classList.add("hideRow");
+
+        // ["15_39","24_44"]
+        // alert(localStorage.getItem('cart'));
+        
+        let hide = document.getElementById('hide' + id);
+        let toDelete = hide.className;
+
+        let moment = JSON.parse(localStorage.getItem('cart'))
+        moment.splice(toDelete, 1);
+        localStorage.setItem('cart', JSON.stringify(moment))
+
+        // 15_39
+        // alert(toDelete);
+
+        //borramos por lo del subtotal
+        let subtotalDelete = document.getElementById('subtotal' + id);
+        subtotalDelete.innerHTML = "0";
+
+        //nuevo conteo...
+        let cart = JSON.parse(localStorage['cart']); 
+        localStorage.setItem('cartConteo', cart.length);
+
+        cargarCarrito();
+
+    }
+
+
+    /* Vaciar el carrito */
+    function deleteCarrito(){
+            localStorage.removeItem('cart');
+            localStorage.removeItem('cartConteo');
+    }
+
+
+</script>
+
+
+
+    <div class="contInfoResumen">
+
+        <div class="izqInfo">
+            <!-- ******************************* -->
+ 
+            <style>
+                .inputCantidad{
+                    width: 40px;
+                    padding: 4px;
+                    text-align: center;
+                    margin: 0;
+                }
+                .btnPlusMinus{
+                    width: 30px;
+                    height: 30px;
+                    margin: 0;
+                }
+                .btnPlusMinus:hover{
+                    cursor: pointer;
+                }
+                .imgProduct{
+                    width: 50px;
+                }
+                .contProduct{
+                    display: flex;
+                    justify-content: left;
+                    align-items: center;
+                }
+            </style>
+    <table class="table">
+        <tr>
+          <th class="table__heading">Producto</th>
+          <th class="table__heading">Talle</th>
+          <th class="table__heading">Precio</th>
+          <th class="table__heading">Cantidad</th>
+          <th class="table__heading">Dto</th>
+          <th class="table__heading">Subtotal</th>
+          <th class="table__heading" style="width: 100px;"><i class="fas fa-trash"></i></th>
+
+        </tr>
+        <!-- *********************************** -->
+        
+
+        
+        
+
+
+
+        <% 
+        if(typeof productsFiltrados !== 'undefined'){
+            // ordenamos el array ABC
+            cart.sort();
+            for (var i = 0; i < cart.length; i++) { 
+    
+                // numero id...
+                let number = cart[i].split('_')[0];
+                
+                // numero talle...
+                let talle = cart[i].split('_')[1];
+
+                //discount...
+                let dtoAplicado;
+                let subtotal;
+                if(productsFiltrados[number].discount > 0){
+                    dtoAplicado = productsFiltrados[number].discount;
+
+                    let valorDto = productsFiltrados[number].price * ( productsFiltrados[number].discount / 100 );
+                    let precioFinal = productsFiltrados[number].price - valorDto;
+                    subtotal = precioFinal;
+                    
+                }else{
+                    dtoAplicado = "---";
+                    subtotal = productsFiltrados[number].price;
+                }
+        %>
+
+            <tr class="table__row"  id="row<%= [i]  %>">
+            <td class="table__content" data-heading="Producto">
+        
+                <a href="zapatillas/id/<%= [number] %>">
+                <span id="hide<%= [i] %>" class="<%= cart[i] %>"></span>
+                <div class="contProduct">
+                    <img src="images/products/<%= productsFiltrados[number].image %> " alt="" class="imgProduct">
+                    &nbsp;&nbsp;
+                    <%= productsFiltrados[number].brands.name.toUpperCase()  +  " // " + productsFiltrados[number].name %>
+                </div>
+                 </a>
+            
+            </td>
+ 
+            <td class="table__content" data-heading="Talle">
+                <%= talle %>
+            </td>
+
+            <td class="table__content" data-heading="Precio">
+                $ <span id="price<%= [i] %>"><%= productsFiltrados[number].price.toLocaleString() %></span>     
+            </td>
+            <td class="table__content" data-heading="Cantidad">
+                <button onclick="minusValue(<%= [i] %>)"  class="btnPlusMinus" >-</button>
+                <input type="text" id="number<%= [i] %>" class="inputCantidad" value="1"/>
+                <button onclick="plusValue(<%= [i] %>)" class="btnPlusMinus">+</button>
+            </td>
+            <td class="table__content" data-heading="Dto">
+                <span id="dto<%= [i] %>"><%= dtoAplicado %> </span>
+            </td>
+            <td class="table__content" data-heading="Subtotal" >
+                $ <span id="subtotal<%= [i] %>" class="subtotalCart"><%= subtotal.toLocaleString() %> </span>  
+            </td>
+            <td class="table__content" data-heading="Borrar">
+                <button onclick="deleteRow(<%= [i] %>)" class="btnPlusMinus" >x</button>
+            </td>
+            </tr>
+
+        
+            <%
+            }
+            %>
+        <%
+        }
+        %>
+        
+
+        
+
+          <tr class="table__row">
+       
+            <td class="table__content" colspan="7" style="text-align: right;">
+                    <a href="" onclick="deleteCarrito()">
+                        <strong>(vaciar carrito)</strong> 
+                    </a>    
+            </td>
+          </tr>
+
+          
+      </table>
+
+
+
+            <!-- ******************************* -->
+        </div>
+
+        <div class="derResumen">
+            
+            <div class="der_resumen">
+                <strong>RESUMEN DEL PEDIDO</strong>
+                
+            </div>
+            
+            <div class="der_row">
+                <div>Total:</div>
+                <div>$ <span id="totalCart">xxx</span></div>
+            </div>
+           
+            <a href="/compraexitosa">
+                <button class="botonComprar" onclick="deleteCarrito()">COMPRAR</button>
+            </a>
+            <a href="/zapatillas">
+                <button class="botonSeguirViendo">SEGUIR VIENDO</button>
+            </a>
+
+            
+        </div>
+
+    </div>
+
+    
+
+
+
+
+    </main>
+
+    <%- include('./partials/footer')%>
+
+</body>
+</html>

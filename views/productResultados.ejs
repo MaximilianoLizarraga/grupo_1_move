@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <%- include('./partials/head') %>
+
+<body>
+
+    <%- include('./partials/header')%>
+
+
+
+    <% 
+    let nroResultados = productDetail.length;
+    let h2Resultados;
+    if (productDetail.length > 0) { 
+        h2Resultados = productDetail.length;
+    }else{
+        h2Resultados = "SIN";
+    }
+    %>
+
+
+    <div class="portada">
+        <div class="port2">
+            (<%= h2Resultados %> RESULTADOS)
+        </div>
+    </div>
+
+
+    <main> 
+
+
+        <h1>ZAPATILLAS</h1>
+        <h2>(RESULTADOS)</h2>
+
+        <br><br>
+        
+    
+        <div class="recomendados">
+
+
+        <% if (productDetail.length > 0) { %>
+
+
+
+
+            <!-- con resultados -->
+            <% for(let i=0; i< productDetail.length ; i++) { 
+                
+                // si hay o no imagen de producto...
+                let productImage;
+                if (productDetail[i].image) {
+                    productImage = "products/" + productDetail[i].image;
+                } else {
+                    productImage = "noimage.jpg";
+                } 
+                // --------------------------------
+
+            %>
+                <a href="/zapatillas/id/<%= productDetail[i].id %>">
+                <div class="imagen_texto">
+                    <div class="imagen">
+                        
+                        <img src="/images/<%= productImage %>" alt="<%= productDetail[i].name %>" class="imgZapatilla">
+                        
+                        <div onclick="event.preventDefault(); like('<%= productDetail[i].id %>');">
+                            <i class="fas fa-heart <%= arrayFav.includes(productDetail[i].id) ? 'active-fav' : ''  %>" id="heart<%= productDetail[i].id %>"></i>
+                        </div>
+
+                        <% 
+                        if(productDetail[i].discount > 0){
+                        %> 
+                        <img src="/images/dto.png"  alt="descuento" class="imgDescuento">
+                        <span class="txtDescuento"><%= productDetail[i].discount + '%' %></span>
+                        <% 
+                        }
+                        %>
+
+                    </div>
+
+
+
+
+                    <hr>
+
+                    <div class="texto"> 
+                        <strong>
+                        <%= productDetail[i].brands.name.toUpperCase() + ' // '+ productDetail[i].name %>
+                        </strong> 
+                        <br><br>
+                        <% 
+                        if(productDetail[i].discount > 0){
+                            let valorDto = productDetail[i].price * ( productDetail[i].discount / 100 );
+                            let precioFinal = productDetail[i].price - valorDto;
+                        %> 
+                        <h3 >
+                            <span class="tachado">$<%= productDetail[i].price.toLocaleString() %></span> 
+                            <span class="textoRojo">$<%= precioFinal.toLocaleString() %></span> 
+                        </h3> 
+                        <% 
+                        }else{
+                        %>
+                        <h3>$<%= productDetail[i].price.toLocaleString() %></h3> 
+                        <% 
+                        }
+                        %>
+                    </div>
+
+                
+                    <button class="buttonAnadir">Ver articulo </button>
+                    
+                    
+                </div>
+                </a>
+            <% } %>
+        <!-- /con resultados -->
+        <% } else { %>
+        <!-- sin resultados -->
+        <div>
+            <br>
+            <h2 class="sin_resultados">No hay productos que coincidan con esa búsqueda</h2>
+        </div>
+        <!-- /sin resultados -->
+        <% } %>
+
+        </div>
+
+        <div class="degrade"></div>
+
+    </main>
+
+    <%- include('./partials/footer')%>
+
+</body>
+</html>

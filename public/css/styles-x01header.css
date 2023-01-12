@@ -1,0 +1,240 @@
+/*
+
+ ██████ ███████ ███████     ██   ██ ███████  █████  ██████  ███████ ██████  
+██      ██      ██          ██   ██ ██      ██   ██ ██   ██ ██      ██   ██ 
+██      ███████ ███████     ███████ █████   ███████ ██   ██ █████   ██████  
+██           ██      ██     ██   ██ ██      ██   ██ ██   ██ ██      ██   ██ 
+ ██████ ███████ ███████     ██   ██ ███████ ██   ██ ██████  ███████ ██   ██                                                         
+                                                                                                                                                          
+text to ascii...    https://patorjk.com/software/taag/#p=display&f=ANSI%20Regular&t=cssHeader
+
+negro:  	#181818
+celeste:	#21D2FE
+violeta:	#A334FF
+verde:		#61A951
+salmon
+tomato
+*/
+
+
+
+/* 
+header
+--------------------------------------------- 
+*/
+header {
+    background-color: #181818;
+    color: #FFFFFF;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    width: 100%;
+    /*"Para que quede el header arriba"*/
+    position: sticky;
+    top: 0;
+    z-index: 1; 
+
+
+}
+
+header a {
+    color: #FFFFFF;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+}
+
+
+.logo {
+    height: 40px;
+    transition: all 1s;
+}
+.logo:hover {
+    transform: scale(1.2);    
+}
+
+
+
+.mainheader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* limitamos y centramos para tamaños mayores */
+    max-width: 1200px;
+    margin: auto;
+    /* 
+    background-color: grey; */
+
+}
+
+.mainheader_left{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    /* 
+    background-color: aqua; */
+
+}
+
+.mainheader_left a:hover{
+    color: #F7EF79;
+    
+}
+.mainheader_left nav{
+    display: none;
+}
+
+
+
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* Para que se ponga en linea... */
+    display: flex; 
+    justify-content: space-between;
+}
+
+nav li{
+    padding-left: 30px;
+    margin-left: 30px;
+}
+
+
+
+.mainheader_right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+/* 
+    background-color: tomato; */
+
+
+}
+
+.mainheader_right .iconos {
+    display: flex;
+    justify-content: space-between;
+    /* con las sig. dos modificamos espacio de iconos a la derecha */
+    margin-left:  25px;
+    width: 120px;
+    /* 
+    background-color: greenyellow; 
+    */
+}
+
+
+.mainheader_right form{
+    display: none;
+}
+
+.mainheader_right form input:hover{
+    background-color: #9966CC;
+}
+.mainheader_right form input:focus{
+    background-color: #9966CC;
+}
+
+.iconos i:hover{
+    color: #F7EF79;
+
+}
+
+.iconoColorViolet{
+    color: violet;
+}
+.iconoColorYellow{
+    color: #F7EF79;
+}
+
+
+.mainheader_right button{
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    
+}
+
+.mainheader_right input{
+    height: 30px;
+    padding-left: 30px;
+    border: 1px solid #666666;
+    background-color: #181818;
+    color: white;
+}
+
+.mainheader_right input:focus{
+    outline: none;
+}
+
+.buscador_lupa{
+    cursor: pointer;
+}
+
+
+
+/****************** DROPDOW (inicio) **********************/
+/* fuente...
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown
+*/
+
+
+.dropbtn {
+    display: block;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+  
+.dropdown {/* 
+    position: relative; */
+    display: inline-block;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width:100%;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+  
+/* MEDIA 768 PX 
+Navegación en desktop
+-------------------------------- */
+@media (min-width: 768px) {
+
+    .dropbtn {display: none;}
+
+    /* lo siguiente necesario por si hace resize */
+    .dropdown-content {display: none;}
+
+}
+
+/****************** DROPDOW (final) **********************/

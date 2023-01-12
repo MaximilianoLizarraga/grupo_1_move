@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <%- include('../partials/head') %>
+
+<body>
+
+<%- include('../partials/header')%>
+
+
+<style type="text/css">
+
+
+.admin_nav{
+    margin: auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+}
+
+.admin_nav div{
+    background-color: blueviolet;
+    color: white;
+    padding: 10px;
+    width: 160px;
+    border-radius: 80px;
+}
+
+
+    /* CSS TABLA (inicio) ------------------- */
+    .table {
+        display: table;
+        margin: auto;
+        margin-bottom: 50px;
+    }
+
+    .heading{
+        display: table-row;
+        font-weight: bold;
+        text-align: center;
+        background-color: aquamarine;
+    }
+
+    .row{
+        display: table-row;
+    }
+
+    .cell{
+        display: table-cell;
+        border: solid;
+        border-width: thin;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        vertical-align: middle;
+    }
+
+    .cell img {
+        width: 50px;
+    }
+
+    .cell button{
+        cursor: pointer;
+        padding: 5px;
+        background: none;
+        color: inherit;
+        border: none;
+    }
+    /* CSS TABLA (fin) ------------------- */
+
+</style>
+
+    <main >
+    
+        <h1>ADMIN / LISTAR</h1>
+
+        <div class="admin_nav">
+            <a href="/admin"><div><i class="fas fa-solid fa-list"></i>&nbsp;Listar</div></a>
+            <a href="/admin/create"><div><i class="fas fa-plus"></i>&nbsp;Crear</div></a>
+        </div>
+
+        <!-- Tabla (inicio) -->
+        <div class="table">
+
+    
+            <div class="heading">
+                <div class="cell">
+                    <i class="fas fa-edit"></i>
+                </div>
+
+                
+                <div class="cell">
+                    <p>IMAGEN</p>
+                </div>
+                <div class="cell">
+                    <p>MARCA</p>
+                </div>
+                <div class="cell">
+                    <p>NOMBRE</p>
+                </div>
+                <div class="cell">
+                    <p>PRECIO</p>
+                </div>
+                <div class="cell">
+                    <p>DTO</p>
+                </div>
+                <div class="cell">
+                    <i class="fas fa-trash"></i>
+                </div>
+            </div>
+    
+            <% for(let i=0; i< products.length ; i++) { %>
+            <div class="row">
+                <div class="cell">
+                    <a href="/admin/edit/<%= products[i].id %>"><i class="fas fa-edit"></i></a> 
+                </div>
+
+                
+                <div class="cell">
+                    <% 
+                    let productImage;
+                    if (products[i].image) {
+                        productImage = "products/" + products[i].image;
+                    } else {
+                        productImage = "noimage.jpg";
+                    } 
+                    %>
+                    <p><img src="/images/<%= productImage %>"></p>
+                </div>
+                <div class="cell">
+                    <!-- marca -->
+                    <!-- products[i].id_brand  -->
+                    <% 
+                    for( let index = 0; index < brands.length; index++ ) { 
+                        if (brands[index].id == products[i].id_brand){
+                    %>
+                    <%= brands[index].name.toUpperCase() %>
+                    <%
+                        }
+                    }
+                    %>
+                </div>
+                <div class="cell">
+                    <!-- nombre -->
+                    <p><%= products[i].name %></p>
+                </div>
+                <div class="cell">
+                    <!-- precio -->
+                    <p>$ <%= products[i].price.toLocaleString() %></p>
+                </div>
+                <div class="cell">
+                    <!-- descuento -->
+                    
+                    <p>
+                    <%
+                    if ( products[i].discount == 0 ){
+                    %>
+                        <%= "------" %>
+                    <%
+                    }else{
+                    %>
+                        <%= products[i].discount + " %"%>
+                        <%
+                    }
+                    %>
+                    </p>
+
+                </div>
+                
+                <div class="cell">
+                <!--
+                confirmacion en javascript
+                https://stackoverflow.com/questions/27921283/add-a-confirmation-alert-before-submitting-a-form
+                 -->
+                <form action="/admin/delete/<%= products[i].id %>/?_method=DELETE" method="POST" onSubmit="return confirm('¿Esta seguro?');">
+                    <button type="submit"><i class="fas fa-trash"></i></button>
+                </form>
+                </div>
+
+
+            </div>
+            <% } %>
+    
+            
+    
+        </div>
+        <!-- Tabla (fin) -->
+  
+
+    </main>
+
+    <%- include('../partials/footer')%>
+
+</body>
+</html>

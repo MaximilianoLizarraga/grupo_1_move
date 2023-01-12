@@ -1,0 +1,166 @@
+ /*/*------------Encabezado del carrito/*------------*/
+.cart-header{
+    background-color: #ebebeb;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    color: #4b4848;
+    font-size: 12px;
+    align-items: center;
+}
+
+
+.cart-header a{
+    color: #898383; 
+}
+
+.cart-header a:hover {
+    color: #686161; 
+}
+
+ /*------------Seccion del producto/*------------*/
+
+.main-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+ 
+}
+
+.product-details{
+    display: flex;
+    padding: 20px; 
+    min-width: 320px;
+    justify-content: space-between;
+}
+
+.cart-image {
+    width: 50%;
+    padding: 10px;
+    display: block;
+}
+
+.cart-image img {
+    width: 25vw;
+    min-width: 100px;
+}
+
+.cart-item {
+    padding: 10px;
+    width: 50%;
+}
+
+.CartItem-Heading {
+    text-decoration: none; 
+    color: #252323;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.CartItem-Options {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #686161;
+}
+
+.CartItem-Option {
+    list-style: none;
+    font-size: 12px;
+}
+
+.CartItem-Info {
+    display: flex;
+    
+    gap: 20px;
+}
+
+.CartItem-Qty{
+    color: #686161;
+}
+
+.CartItem-Actions {
+    background-color: white;
+    margin-top: 10px;;
+}
+
+.CartItem-Delete:hover {
+    color: red;
+}
+
+ /*/*------------Seccion resumen/*------------*/
+
+.resumen {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+ 
+}
+
+.resumen h4 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.subtotal{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px ;
+    margin-bottom: 10px; 
+    border-top: solid #bdbcbc;
+    padding-top: 15px;
+    color:  #686161;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px ;
+    margin-bottom: 5px;
+    border-bottom: solid #bdbcbc;
+    padding-bottom: 15px;
+    font-weight: bold;
+}
+
+.DiscountCode {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.FieldInput{
+    display: flex;
+}
+
+.checkout-button{
+    width: 100%;
+    background-color: red;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 20px;
+    height: 40px;
+    line-height: 40px;
+    max-width: 400px;
+    margin: auto;
+    transition: all 0.5s;
+}
+
+/* .checkout-button:hover{
+    background-color: blue;
+    cursor: pointer;
+} */
+
+
+
+
+
+@media (min-width: 768px) {
+    .product-details{
+        width: 70%;
+    }
+
+    .resumen {
+        width: 30%;
+    }
+
+
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- --------------------------------------------- -->
+<!-- HEAD (inicio) -->
+<%- include('./partials/head') %>
+
+<!-- HEAD (fin) -->
+<!-- --------------------------------------------- -->
+
+<!-- --------------------------------------------- -->
+
+<body>
+
+    <%- include('./partials/header')%>
+
+
+<!--lOGIN-->
+<main>
+    
+    
+    <h1>Iniciar Sesión</h1>
+    
+
+    <div class="login_register" >
+        <div class='inline'><div> <a href="/users/login">Iniciar Sesión</a> </div></div>
+        <div class='inline'><div> <a href="/users/register">Registrarme</a> </div></div>
+    </div>
+
+
+    <!--email-->
+
+
+    <form action="/users/login" method="POST" autocomplete="off" class="formulario">
+
+    <div class="emailycontra">
+        <label for="email"><span class="asterisco">* </span>Email</label>
+    </div>
+    <input type="email" id="email" name="email" value="" />
+    <% if (locals.errors && errors.email) { %>
+        <div style="color: red"> 
+        <%= errors.email.msg%>
+        </div>
+      <% } %>
+
+    <!--contraseña-->
+    <div class="emailycontra">
+        <label for="password"><span class="asterisco">* </span>Contraseña</label>
+    </div>
+    <input type="password" id="password" name="password"  value="" minlength="8" />
+
+    
+    
+    <div class="recordar">
+
+        <div class="izq">
+            <label for="recordarme">
+            <input type="checkbox" name="recordarme" id="recordarme" value="si"/>
+            Recordarme
+            </label>
+        </div>
+    
+        <div class="der">
+            <a  href="/forgetpw">¿Olvidaste tu contraseña?</a>
+        </div>
+
+    </div>
+
+
+    <!--boton iniciar sesión-->
+    <button type="submit" class="boton-inicio"  >INICIAR SESIÓN</button>
+
+    </form>
+
+
+    
+
+
+<%- include('./partials/footer')%>
+<!-- BODY / FOOTER (fin) -->
+<!-- --------------------------------------------- -->
+
+</main>
+   
+</body>
+</html>
+    
+

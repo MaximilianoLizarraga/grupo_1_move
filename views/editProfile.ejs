@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <%- include('./partials/head') %>
+
+<body>
+
+<%- include('./partials/header')%>
+
+<main >
+
+    <h1>Editando... <%=user.first_name%></h1>
+
+    <form action="/users/editProfile/<%=user.id %>" method="post" name="edicionusuario" autocomplete="off" class="formulario">
+
+
+        <div class="emailycontra">
+            <label for="nombre"><span class="asterisco">* </span>Nombre</label>
+        </div>
+        <input type="text" name="name" id="nombre" value="<%=user.first_name%>">
+      
+
+        <div class="emailycontra">
+            <label for="apellido"><span class="asterisco">* </span>Apellido</label>
+        </div>
+        <input type="text" name="last_name" id="apellido" value="<%=user.last_name%>">      
+
+
+        <div class="emailycontra">
+            <label for="genero"><span class="asterisco">* </span>Género</label>
+        </div>
+        <select id="genero" name="genero">
+            <option value="">Seleccione...</option>
+            <%    
+                const gender = ['femenino', 'masculino'];
+                for (let x of gender) {
+            %>
+                <option value="<%= x %>" <%= ( user.gender == x) ? 'selected' : '' %>>
+                <%= x.toUpperCase() %>
+                </option>                     
+            <%     
+                }
+            %>
+        </select>
+
+
+
+        <button type="submit" class="boton-inicio">GUARDAR</button>
+                
+    </form>
+
+</main>
+
+<%- include('./partials/footer')%>
+    
+</body>
+</html>
